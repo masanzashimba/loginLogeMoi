@@ -1,0 +1,148 @@
+body {
+    background-color: bisque;
+   }
+   
+   .header {
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    top: 0%;
+    margin: 0%;
+    height: 500px; /* Adjust the height as needed */
+   }
+   
+   .header img {
+    position: absolute;
+    right: 0%;
+     /* Adjust the width as needed */
+    height: 100%; /* Adjust the height as needed */
+    object-fit: cover;
+    object-position: 50% 50%;
+    max-width: 500px;
+   }
+   
+
+   .Text- {
+    -webkit-font-smoothing: antialiased;
+    text-transform: none;
+    font-family: "Ivar Headline", "Ivar Headline Subset", "Adjusted Times", "Adjusted Times New Roman", "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 72px;
+    text-align: center;
+    margin: 0px 0px 16px;
+   }
+   .h1 {
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+   }
+
+/*    
+  .movie{
+  
+    box-sizing: border-box;
+    margin: 0px auto;
+    width: 1200px;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  
+  
+.row {
+    padding-bottom: 30px;
+}
+
+  
+  .movie1{
+    box-sizing: border-box;
+    transition: all 250ms;
+  } */
+
+
+
+  
+  .movie2{
+  
+    box-sizing: border-box;
+    margin: 0px auto;
+    width: 1200px;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  
+  
+.row2 {
+    padding-bottom: 30px;
+}
+
+  
+  .movie12{
+    box-sizing: border-box;
+    transition: all 250ms;
+  }
+  
+  .Onsite2{
+    box-sizing: border-box;
+  }
+  
+  .StyledCard2{
+    box-sizing: border-box;
+    flex-flow: wrap;
+    cursor: pointer;
+    transition: all 200ms ease-in-out 0s;
+    flex: 2 1 280px;
+    text-align: center;
+    display: flex;
+    border-radius: 4px;
+    padding: 16px;
+    background-color: rgb(255, 255, 255);
+    /* box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px; */
+    border: none;
+    margin-right: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .StyledBox2{
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: flex;
+    height: auto;
+    margin-top: 16px;
+    flex: 1 0 277px;
+  }
+  
+  .Image-c2{
+    cursor: pointer;
+    text-align: center;
+    box-sizing: border-box;
+  }
+  
+  
+  .StyledBox2{
+      cursor: pointer;
+      text-align: center;
+      box-sizing: border-box;
+      flex: 2 1 277px;
+      margin-top: 16px;
+      margin-left: 0px;
+      display: flex;
+      
+      flex-direction: column;
+  }
+  .header{
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 2px 4px 0px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.92),
+    rgba(28,28,28,0.4));
+  
+}

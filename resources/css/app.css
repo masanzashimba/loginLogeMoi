@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.max-w-960 {
+  max-width: 960px;
+ }
+ 
+ .text-blue-500{
+  position: relative;
+ }
+
+ .fa-solid {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+ }
+ 
