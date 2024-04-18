@@ -2,7 +2,15 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\PermissionController;
+use App\Http\Controllers\Api\PictureController;
+use App\Http\Controllers\Api\PropertyController;
+use App\Http\Controllers\Api\RoleController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\OptionController;
 
+use App\Http\Resources\UserResource;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +22,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+
+Route::resource('permissions', PermissionController::class);
+Route::resource('pictures', PictureController::class);
+Route::resource('properties', PropertyController::class);
+Route::resource('roles', RoleController::class);
+Route::resource('options', OptionController::class);
+Route::resource('users', UserController::class);
+
+Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
+// Route::delete('/properties/{id}', [PropertyController::class, 'delete']);
+Route::put('/properties/{id}', [PropertyController::class, 'update']);
+Route::put('/users/{id}', [UserController::class, 'update']);
+
+
+
+
+
+
+
+

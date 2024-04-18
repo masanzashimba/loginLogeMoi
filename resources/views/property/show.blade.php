@@ -4,29 +4,29 @@
 
 @section('content')
 
-    <div class="container mt-4">
-        <div class="row">
-            <div class="col-8">
-
-                <div id="carousel" class="carousel slide" data-bs-ride="carousel" style="max-width: 800px;">
-                    <div class="carousel-inner">
-                        @foreach($property->pictures as $k => $picture)
-                            <div class="carousel-item {{ $k === 0 ? 'active' : '' }}">
-                                <img src="{{ $picture->getImageUrl(800, 530) }}" alt="">
-                            </div>
-                        @endforeach
-                    </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
+<div class="relative max-w-screen-md ">
+    <div class="overflow-hidden relative">
+        <div class="flex">
+            @foreach($property->pictures as $k => $picture)
+                <div class="w-full">
+                    <img src="{{ $picture->getImageUrl(800, 530) }}" alt="" class="w-full h-auto">
                 </div>
-            </div>
+            @endforeach
+        </div>
+    </div>
+    <div class="carousel__prev" id="prevBtn"></div>
+    <div  class="carousel__next" id="nextBtn"></div>
+    
+  
+</button>
+
+</div>
+
+
+
+
+
+
             <div class="col-4">
 
                 <h1>{{ $property->title }}</h1>
@@ -62,7 +62,13 @@
         </div>
     </div>
 
-        <div class="mt-4">
+    
+    
+    
+    
+    
+    
+    <div class="mt-4">
             <p>{!! nl2br($property->description) !!}</p>
             <div class="row">
                 <div class="col-8">
@@ -106,4 +112,34 @@
 
     </div>
 
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    var carousel = document.querySelector('.flex');
+    var images = carousel.children;
+    var currentIndex = 0;
+
+    function showImage(index) {
+        for (var i = 0; i < images.length; i++) {
+            images[i].style.display = 'none';
+        }
+        images[index].style.display = 'block';
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', function() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', function() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    });
+
+    // Affiche la première image au chargement de la page
+    showImage(currentIndex);
+});
+</script>
+
+
+    
 @endsection

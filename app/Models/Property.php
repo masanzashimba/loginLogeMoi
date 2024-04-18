@@ -30,7 +30,10 @@ class Property extends Model
         'city',
         'address',
         'postal_code',
-        'sold'
+        'sold',
+        'type'
+
+
     ];
 
     public function options(): BelongsToMany
@@ -80,6 +83,10 @@ class Property extends Model
     public function scopeRecent(Builder $builder): Builder{
         return $builder->orderBy('created_at', 'desc');
     }
+    
+
+
+
     public function user(){
         return $this->belongsTo(User::class);
     }

@@ -99,7 +99,11 @@ body {
     }
     
     #accord-content {
-      padding:  10px;
+     
+      text-align: center;
+      padding: 10px;
+      padding-left: 0px;
+      padding-right: 0px;
      
     }
     .imge{
@@ -130,6 +134,7 @@ body {
     
   .stylebox1{
   
+    padding-top: 30px;
       box-sizing: border-box;
       display: flex;
       -webkit-box-pack: center;

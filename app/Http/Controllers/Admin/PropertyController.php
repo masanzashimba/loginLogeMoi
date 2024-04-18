@@ -15,8 +15,6 @@ class PropertyController extends Controller
 
     public function index()
     {
-
-
         if (auth()->user()->hasRole('admin')) {
             $properties = Property::orderBy('created_at', 'desc')->paginate(25);
         } else {
@@ -56,6 +54,11 @@ class PropertyController extends Controller
         $property = Property::create(['user_id' => auth()->id()] + $request->all());
         $property->options()->sync($request->validated('options'));
         $property->attachFiles($request->validated('pictures'));
+
+        $property = new Property;
+        $property->type = $request->input('type');
+        // $property->save();
+
         return to_route('admin.property.index')->with('success', 'Le bien a bien été créé');
     }
 
@@ -102,11 +105,7 @@ class PropertyController extends Controller
         Picture::destroy($property->pictures()->pluck('id'));
         $property->delete();
         return redirect()->route('admin.property.index')->with('success', 'Le bien a bien été supprimé');
-    
   }
-
-
-
     public function authorize($ability, $arguments = [])
     {
         if (auth()->id() != $arguments[0]->user_id) {

@@ -10,9 +10,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
+// use Laratrust\Traits\LaratrustUserTrait;
+
+
 class User extends Authenticatable  implements LaratrustUser
 {
     use HasApiTokens, HasFactory, Notifiable,HasRolesAndPermissions;
+    
+    // use LaratrustUserTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -44,9 +49,7 @@ class User extends Authenticatable  implements LaratrustUser
         'email_verified_at' => 'datetime',
     ];
 
-    public function todos(){
-        return $this->hasMany(Todos::class);
-    }
+  
     public function pictures(){
         return $this->hasMany(Picture::class);
     }
@@ -59,12 +62,11 @@ class User extends Authenticatable  implements LaratrustUser
     {
         if ($this->hasRole('admin')) {
             return 'admindashboard';
-        }elseif ($this->hasRole('todolistuser')) {
-            return 'userdashboard';
         }elseif ($this->hasRole('propriétaire')){
             return 'userdashboard';
             # code...
         }
     }
 
+    
 }

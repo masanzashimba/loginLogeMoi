@@ -17,7 +17,7 @@ class Picture extends Model
     protected static function booted(): void
     {
         static::deleting(function (Picture $picture) {
-            Storage::disk('public/')->delete($picture->filename);
+            Storage::disk('public')->delete($picture->filename);
         });
     }
 

@@ -9,37 +9,11 @@
     
     <table class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
-        <!-- <tr>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Titre</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Surface</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prix</th>
-            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ville</th>
-            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-        </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-        @foreach($properties as $property)
-            <tr>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $property->title }}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $property->surface }}m²</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ number_format($property->price, thousands_separator: ' ') }}</td>
-                <td class="px-6 py-4 whitespace-nowrap">{{ $property->city }}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <a href="{{ route('admin.property.edit', $property) }}" class="text-blue-500 hover:text-blue-700">Editer</a>
-                    <form action="{{ route('admin.property.destroy', $property) }}" method="post" class="inline">
-                        @csrf
-                        @method("delete")
-                        <button type="submit" class="text-red-500 hover:text-red-700">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach -->
-        
          <div class="py-12 z-0">
          <div class="container mx-auto px-4 z-0">
-    
         <div class="text-center">
         <h2 class="text-2xl font-bold mb-4">Vos Publications </h2>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 z-0 ">
             @foreach($properties as $property)
                 <div class="bg-white shadow-lg rounded-lg overflow-hidden">
@@ -83,10 +57,7 @@
                         </h5>
                         <p class="text-gray-600">{{ $property->surface }}m² - {{ $property->city }} ({{ $property->postal_code }})</p>
                         <div class="text-blue-500 font-bold text-lg z-0">
-                            <!-- <i class="fa-solid fa-bars"></i> -->
 
-            <!-- <div class="hidden sm:flex sm:items-center sm:ms-6"> -->
-             
                 
                             {{ number_format($property->price, thousands_separator: ' ') }} €
                         </div>
@@ -94,20 +65,9 @@
                 </div>
             @endforeach
         </div>
-    </div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
+        </div>
+       </div>
+        </div>
 
 
 

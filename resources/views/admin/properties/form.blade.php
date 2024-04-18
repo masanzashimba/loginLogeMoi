@@ -13,6 +13,22 @@
 
         <div class="row">
             <div class="col vstack gap-2" style="flex: 100">
+            @include('shared.input', ['type' => 'select',
+    'class' => 'col',
+    'label' => 'Type du bien: Location/vente',
+    'name' => 'type',
+    'value' => $property->type,
+    'options' => [
+        'vente' => 'À vendre',
+        'location' => 'À louer'
+    ],
+    'selected' => $property->type
+])
+
+
+
+
+
                 <div class="row">
                     @include('shared.input', ['class' => 'col', 'label' => 'Titre', 'name' => 'title', 'value' => $property->title])
                     <div class="col row">

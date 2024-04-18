@@ -19,9 +19,11 @@
         </div>
     </div>
     
-    <div class="container">
-    <p class="text-pri">Tous nos biens</p>
-        <div class="row">
+    <div class="py-12 z-0">
+        <div class="container mx-auto px-4 z-0">
+        <div class="text-center">
+       <p class="text-pri">Tous nos biens</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 z-0 ">
             @forelse($properties as $property)
                 <div class="col-3 mb-4">
                     @include('property.card')
@@ -36,6 +38,10 @@
         <div class="my-4">
             {{ $properties->links() }}
         </div>
+    </div>
+    
+        </div>
+   
     </div>
 
 

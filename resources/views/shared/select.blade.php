@@ -11,9 +11,13 @@
             <option @selected($value->contains($k)) value="{{ $k }}">{{ $v }}</option>
         @endforeach
     </select>
+
+
     @error($name)
     <div class="invalid-feedback">
         {{ $message }}
     </div>
     @enderror
 </div>
+
+

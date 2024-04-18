@@ -13,11 +13,13 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
-
+        @vite(['resources/css/app.css'])
         <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+     
     </head>
     <body class="font-sans antialiased">
+
+
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
@@ -34,6 +36,12 @@
             <main>
                 {{ $slot }}
             </main>
+
+            @include('footer')
         </div>
+
+        <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
+
+        <script></script>
     </body>
 </html>
