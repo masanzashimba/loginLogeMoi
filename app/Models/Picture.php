@@ -31,4 +31,16 @@ class Picture extends Model
         $urlBuilder = UrlBuilderFactory::create('/images/', config('glide.key'));
         return $urlBuilder->getUrl($this->filename, ['w' => $width, 'h' => $height, 'fit' => 'crop']);
     }
+
+
+    
+
+
+
+
+
+
+
+
+
 }

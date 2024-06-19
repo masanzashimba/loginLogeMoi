@@ -19,15 +19,32 @@
 
         </div>
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 ">
-            <!-- <div>
-            <h1 class="logo"><a href="/">LogeMoi</a></h1>
-            </div> -->
+       
 
 
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
         </div>
+        <!-- </div>
+        </div> -->
+
+        <script>
+            const password = document.getElementById('password')
+const bg = document.getElementById('bg')
+
+
+password.addEventListener('input',(e) => {
+
+  const input = e.target.value
+  
+  const length = input.length
+  const blurValue = 20 - length * 2
+  bg.style.filter = `blur(${blurValue}px)`
+})
+
+
+        </script>
     </body>
 </html>
 

@@ -6,6 +6,7 @@
 
     <h1>@yield('title')</h1>
 
+ 
     <form class="vstack gap-2" action="{{ route($option->exists ? 'admin.option.update' : 'admin.option.store', $option) }}" method="post">
 
         @csrf
@@ -23,6 +24,9 @@
             </button>
         </div>
 
+
+        
     </form>
+    
 
 @endsection

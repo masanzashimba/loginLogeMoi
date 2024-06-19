@@ -77,7 +77,7 @@ class Property extends Model
 
     public function scopeAvailable (Builder $builder): Builder
     {
-        return $builder->where('sold', false);
+        return $builder->where('sold', true);
     }
 
     public function scopeRecent(Builder $builder): Builder{
@@ -90,4 +90,38 @@ class Property extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+    
+    public function getProperty():array
+{
+    return [
+        'id' => $this->id,
+        'user_id' => $this->user_id,
+        'title' => $this->title,
+        'description' => $this-> description,
+        'surface' => $this-> surface,
+        'rooms' => $this->rooms,
+        'bedrooms' => $this->bedrooms,
+        'floor' => $this->floor,
+        'price' => $this->price,
+        'city' => $this->city,
+        'address' => $this->address,
+        'postal_code' => $this->postal_code,
+        'sold' => $this->sold,
+        'type' => $this->type
+
+
+        // Ajoutez ici d'autres propriétés que vous souhaitez inclure
+    ];
+}
+ public function getId (){
+    return uniqid();
+ }
+    
+  
+
+
+
+
+
+
 }

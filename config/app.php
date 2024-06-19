@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Facade;
 
 return [
+    'env' => [
+        //...
+        'STRIPE_SECRET_KEY',
+    ],
+    
 
     /*
     |--------------------------------------------------------------------------

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('properties', function (Blueprint $table) {
             
-                $table->enum('type', ['vente', 'location']);
+                $table->enum('type', ['vente', 'location', 'appart']);
            
             //
         });

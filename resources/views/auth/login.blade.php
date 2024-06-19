@@ -1,9 +1,13 @@
 <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
+
+    <!-- <div id="myModal" class="modal">
+    <div class="modal-content"> -->
+
     <h3 class="mb-4 text-xl font-medium text-gray-900 text-center " >
             Connectez-vous sur LogeMoi
-        </h3>
+    </h3>
         
 
     <form method="POST" action="{{ route('login') }}" class="space-y-6">
@@ -50,9 +54,7 @@
         <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                   {{ __(' Se connecter') }}
             </button>
-            <!-- <x-primary-button class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                {{ __(' Se connecter') }}
-            </x-primary-button> -->
+          
         </div>
         <div class="text-sm font-medium text-gray-500">
                 Non enregistrer?
@@ -60,7 +62,6 @@
 
         </div>
     </form>
-
 
 
 </x-guest-layout>

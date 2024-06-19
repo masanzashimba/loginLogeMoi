@@ -1,9 +1,10 @@
 <?php
+
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\PropertyFormRequest;
-use  App\Http\Resources\PropertyResource;
+use App\Http\Resources\PropertyResource;
 use App\Models\Option;
 use App\Models\Picture;
 use App\Models\Property;
@@ -14,87 +15,107 @@ class PropertyController extends Controller
 {
     public function index()
     {
-        
         return Property::all();
     }
 
-   
     public function store(Request $request)
     {
+        // Validez les données entrantes si nécessaire
+        $request->validate([
+            'user_id' => 'required|exists:users,id',
+            'title' => 'required',
+            'description' => 'nullable',
+            'surface' => 'nullable|numeric',
+            'rooms' => 'nullable|integer',
+            'bedrooms' => 'nullable|integer',
+            'floor' => 'nullable|integer',
+            'price' => 'nullable|numeric',
+            'city' => 'nullable',
+            'address' => 'nullable',
+            'postal_code' => 'nullable',
+            'sold' => 'nullable|boolean',
+            'type' => 'nullable',
+            'options' => 'nullable|array',
+            'options.*.id' => 'exists:options,id',
+            'pictures' => 'nullable|array',
+            'pictures.*.filename' => 'required|string',
+        ]);
 
-        $property = Property::create($request->all());
+        // Créez la propriété
+        $property = Property::create($request->only([
+            'user_id', 'title', 'description', 'surface', 'rooms', 'bedrooms',
+            'floor', 'price', 'city', 'address', 'postal_code', 'sold', 'type'
+        ]));
 
-        foreach ($request->pictures as $picture) {
-            $property->pictures()->create($picture);
+        // Attachez les options à la propriété
+        if ($request->has('options')) {
+            foreach ($request->options as $option) {
+                $property->options()->attach($option['id']);
+            }
         }
-    
-        foreach ($request->options as $option) {
-            $property->options()->create($option);
+
+        // Ajoutez les images à la propriété
+        if ($request->has('pictures')) {
+            foreach ($request->pictures as $pictureData) {
+                $picture = new Picture([
+                    'filename' => $pictureData['filename'],
+                ]);
+                $property->pictures()->save($picture);
+            }
         }
-    
+
+        // Retournez la propriété créée avec ses relations
         return new PropertyResource($property);
-
     }
 
     public function show(Property $property)
     {
-        return response()->json($property);
+        return new PropertyResource($property);
     }
 
-    // public function update(PropertyFormRequest $request, Property $property)
-    // {
-    //     $property->update($request->validated());
-    //     $property->options()->sync($request->validated('options'));
-    //     $property->attachFiles($request->validated('pictures'));
-
-    //     return response()->json($property);
-    // }
-
-
-
-
     public function update(Request $request, $id)
-{
-    $property = Property::findOrFail($id);
+    {
+        $property = Property::findOrFail($id);
 
-    // Mise à jour des attributs de la propriété
-    $property->update($request->all());
+        // Validez les données entrantes si nécessaire
+        $request->validate([
+            'user_id' => 'sometimes|exists:users,id',
+            'title' => 'sometimes',
+            // Ajoutez d'autres règles de validation au besoin pour les autres champs
+            'options' => 'nullable|array',
+            'options.*.id' => 'exists:options,id',
+            'pictures' => 'nullable|array',
+            'pictures.*.filename' => 'required|string',
+        ]);
 
-    // Mise à jour des images associées
-   
+        // Mettez à jour les attributs de la propriété
+        $property->update($request->only([
+            'user_id', 'title', 'description', 'surface', 'rooms', 'bedrooms',
+            'floor', 'price', 'city', 'address', 'postal_code', 'sold', 'type'
+        ]));
 
+        // Mettez à jour les options associées
+        if ($request->has('options')) {
+            $property->options()->sync($request->options);
+        }
 
-    return new PropertyResource($property);
-}
+        // Mettez à jour les images associées (à implémenter selon votre logique)
 
-
-
-
-
-
-
-
-
-
+        return new PropertyResource($property);
+    }
 
     public function destroy($id)
     {
         $property = Property::findOrFail($id);
 
-        // Supprimer toutes les images associées au bien
+        // Supprimez toutes les images associées à la propriété
         foreach ($property->pictures as $picture) {
             $picture->delete();
         }
-    
-        // Supprimer le bien lui-même
-        $property->delete();
-    
-        return response()->json(['message' => 'Bien et ses images supprimés avec succès']);
-        // Picture::destroy($property->pictures()->pluck('id'));
-        // $picture = Picture::findOrFail($id);
-        // $picture->delete();
-        // $property->delete();
 
-        // return response()->json(null, Response::HTTP_NO_CONTENT);
+        // Supprimez la propriété elle-même
+        $property->delete();
+
+        return response()->json(['message' => 'Propriété et ses images supprimées avec succès']);
     }
 }

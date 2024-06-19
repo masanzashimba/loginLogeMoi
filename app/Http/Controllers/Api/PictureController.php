@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
-
 use App\Http\Resources\PictureResource;
 use App\Models\Picture;
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -17,15 +15,6 @@ class PictureController extends Controller
     public function index()
     {
         return PictureResource::collection(Picture::all());
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -33,7 +22,17 @@ class PictureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'filename' => 'required|string',
+            'property_id' => 'required|exists:properties,id',
+        ]);
+
+        $picture = Picture::create([
+            'filename' => $request->filename,
+            'property_id' => $request->property_id,
+        ]);
+
+        return new PictureResource($picture);
     }
 
     /**
@@ -41,15 +40,8 @@ class PictureController extends Controller
      */
     public function show(string $id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        $picture = Picture::findOrFail($id);
+        return new PictureResource($picture);
     }
 
     /**
@@ -57,7 +49,16 @@ class PictureController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $picture = Picture::findOrFail($id);
+        
+        $request->validate([
+            'filename' => 'sometimes|required|string',
+            'property_id' => 'sometimes|required|exists:properties,id',
+        ]);
+
+        $picture->update($request->only(['filename', 'property_id']));
+
+        return new PictureResource($picture);
     }
 
     /**
@@ -65,6 +66,9 @@ class PictureController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $picture = Picture::findOrFail($id);
+        $picture->delete();
+
+        return response()->json(['message' => 'Image supprimée avec succès']);
     }
 }

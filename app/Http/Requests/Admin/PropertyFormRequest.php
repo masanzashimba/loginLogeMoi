@@ -36,7 +36,7 @@ class PropertyFormRequest extends FormRequest
             'options' => ['array', 'exists:options,id', 'required'],
             'pictures' => ['array'],
             'pictures.*' => ['image', 'max:8000'],
-            'type' => 'required|in:vente,location'
+            'type' => 'required|in:vente,location,appart'
         ];
     }
 }

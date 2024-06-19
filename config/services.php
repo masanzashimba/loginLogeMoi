@@ -2,6 +2,14 @@
 
 return [
 
+    'stripe' => [
+        'model' => env('STRIPE_MODEL', 'App\\Models\\Stripe'),
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET_KEY'),
+
+    ],
+    
+
     /*
     |--------------------------------------------------------------------------
     | Third Party Services

@@ -30,6 +30,21 @@ document.getElementById('accord-toggl').addEventListener('click', function() {
 
 
 
+document.getElementById('accord-togg').addEventListener('click', function() {
+  var content = document.getElementById('accord-conte');
+  if (content.style.display === 'none') {
+    content.style.display = 'block';
+    this.textContent = 'Reduire le contenu';
+  } else {
+    content.style.display = 'none';
+    this.textContent = 'Voir plus';
+  }
+});
+
+
+
+
+
 
 
 
@@ -103,20 +118,40 @@ setInterval(() => {
 
 
 
-const password = document.getElementById('password')
-const bg = document.getElementById('bg')
-
-
-password.addEventListener('input',(e) => {
-
-  const input = e.target.value
-  console.log(input)
-  const length = input.length
-  const blurValue = 20 - length * 2
-  bg.style.filter = `blur(${blurValue}px)`
-})
 
 
 
 
 
+
+
+
+document.getElementById('openModal').addEventListener('click', function(event) {
+  event.preventDefault(); // Empêche le lien de rediriger vers une route
+  document.getElementById('myModal').style.display = 'block'; // Affiche la boîte modale
+});
+
+// Fermer la boîte modale
+window.onclick = function(event) {
+  if (event.target == document.getElementById('myModal')) {
+      document.getElementById('myModal').style.display = 'none';
+  }
+}
+
+
+window.TomSelect = require('tom-select');
+
+
+
+
+function myFunction() {
+  var x = document.getElementById("myNavbar");
+  if (x.className === "nav") {
+     x.className += " responsive";
+  } else {
+     x.className = "nav";
+  }
+ }
+ 
+
+ 

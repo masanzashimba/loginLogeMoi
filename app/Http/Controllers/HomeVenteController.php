@@ -27,6 +27,8 @@ class HomeVenteController extends Controller
                                      ->skip(4)
                                      ->limit(4)
                                      ->get();
+
+        
     
         return view('homevente', ['firstFProperties' => $firstFProperties, 'nextFProperties' => $nextFProperties]);
     }

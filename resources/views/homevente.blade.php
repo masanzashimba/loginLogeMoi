@@ -5,7 +5,7 @@
     <div class="py-12 z-0">
         <div class="container mx-auto px-4 z-0">
         <div class="text-center">
-        <h2>Nos derniers ventes</h2>
+        <h2  class="lobster-regular">Nos derniers biens en ventes</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 z-0 ">
             @foreach($firstFProperties as $property)
             <div >

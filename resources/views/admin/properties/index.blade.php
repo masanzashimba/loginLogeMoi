@@ -3,7 +3,10 @@
     <div class="flex justify-between items-center">
        
        <a href="{{ route('admin.property.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Publiez un nouveau bien </a>
-   </div>
+       <button id="premiumSubscribeButton" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Devenir premium</button>
+
+
+    </div>
     </x-slot>
 
     
@@ -13,6 +16,7 @@
          <div class="container mx-auto px-4 z-0">
         <div class="text-center">
         <h2 class="text-2xl font-bold mb-4">Vos Publications </h2>
+        
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 z-0 ">
             @foreach($properties as $property)
@@ -35,8 +39,6 @@
 
                     <x-slot name="content" class="z-200">
                         <div >
-
-                       
                         <x-dropdown-link href="{{ route('admin.property.edit', $property) }}" class="text-blue-500 hover:text-blue-700 center">
                             {{ __('Editer') }}
                         </x-dropdown-link>

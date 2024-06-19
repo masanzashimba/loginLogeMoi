@@ -15,9 +15,9 @@ class PictureResource extends JsonResource
     public function toArray(Request $request): array
     {
         // return parent::toArray($request);
-        return [
+     return [
             'id' => $this->id,
-            'filename' => $this->name,
+            'filename' => $this->filename, // Utilisez 'filename' au lieu de 'name'
             'property_id' => $this->property_id,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,

@@ -6,6 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
+        
 
         <!-- Fonts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v3.x.x/dist/cdn.min.js" defer></script>
@@ -13,13 +14,12 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
         <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
-        @vite(['resources/css/app.css'])
+
         <!-- Scripts -->
-     
+        <script src="https://js.stripe.com/v3/"></script>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-
-
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
@@ -36,12 +36,7 @@
             <main>
                 {{ $slot }}
             </main>
-
-            @include('footer')
         </div>
-
-        <!-- @vite(['resources/css/app.css', 'resources/js/app.js']) -->
-
-        <script></script>
+        @include('footer')
     </body>
 </html>

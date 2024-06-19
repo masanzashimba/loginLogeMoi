@@ -8,8 +8,10 @@ use App\Http\Controllers\Api\PropertyController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OptionController;
-
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Resources\UserResource;
+use App\Http\Controllers\Api\UploadController;
+
 use App\Models\User;
 /*
 |--------------------------------------------------------------------------
@@ -22,28 +24,27 @@ use App\Models\User;
 |
 */
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('pictures', PictureController::class);
+    Route::resource('properties', PropertyController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('options', OptionController::class);
+    Route::resource('users', UserController::class);
+
+    Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
+    Route::put('/properties/{id}', [PropertyController::class, 'update']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
 });
 
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
-
-Route::resource('permissions', PermissionController::class);
-Route::resource('pictures', PictureController::class);
-Route::resource('properties', PropertyController::class);
-Route::resource('roles', RoleController::class);
-Route::resource('options', OptionController::class);
-Route::resource('users', UserController::class);
-
-Route::delete('/properties/{id}', [PropertyController::class, 'destroy']);
-// Route::delete('/properties/{id}', [PropertyController::class, 'delete']);
-Route::put('/properties/{id}', [PropertyController::class, 'update']);
-Route::put('/users/{id}', [UserController::class, 'update']);
-
-
-
-
+Route::post('upload', [UploadController::class, 'upload']);
 
 
 
